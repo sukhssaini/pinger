@@ -1,4 +1,6 @@
-[
-  "", // add you links here
-  ""
-]
+{
+  "links" : [
+    ""
+  ],
+  "webhook_url" : ""
+}
