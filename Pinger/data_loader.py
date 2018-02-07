@@ -1,5 +1,6 @@
 import json
 import sys
+from Pinger.logger import logger
 
 
 class DataLoader:
@@ -13,9 +14,9 @@ class DataLoader:
                 data = json.loads(file.read())
                 self.data = data
         except IOError as e:
-            print("I/O error({0}): {1}".format(e.errno, e.strerror))
+            logger.error("I/O error({0}): {1}".format(e.errno, e.strerror))
         except:
-            print("Unexpected error:", sys.exc_info()[0])
+            logger.error("Unexpected error:", sys.exc_info()[0])
 
     def validate_json_data(self):
         data = self.data
@@ -35,11 +36,20 @@ class DataLoader:
             print("No data available in file")
 
     def load_json(self):
+        logger.info('loading json data from file.')
         self.read_data_from_file()
+        logger.info('validating json data')
         is_valid = self.validate_json_data()
         if is_valid:
+            logger.info('data returned from load_json')
             return {
                 "links": self.data['links'],
                 "webhook_url": self.data['webhook_url']
             }
-        return None
+        else:
+            logger.error('validation failed')
+            return None
+
+
+dl = DataLoader()
+print(dl.load_json())

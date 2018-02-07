@@ -1,9 +1,6 @@
 import logging
+from Pinger.constants import LOGGER_NAME
 
-
-def get_logger(logger_name):
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(logger_name)
-    return logger
-
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(LOGGER_NAME)
 
