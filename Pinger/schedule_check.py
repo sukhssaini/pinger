@@ -1,8 +1,8 @@
 import time
 import schedule
-from logger import get_logger
-from resource_checker import check_health
-from helper import read_data_from_file, validate_json_data
+from Pinger.logger import get_logger
+from Pinger.resource_checker import check_health
+from Pinger.helper import read_data_from_file, validate_json_data
 
 
 def service():
