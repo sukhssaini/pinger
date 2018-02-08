@@ -1,6 +1,6 @@
 import json
 import sys
-from Pinger.logger import logger
+from logger import logger
 
 
 class DataLoader:
@@ -49,7 +49,3 @@ class DataLoader:
         else:
             logger.error('validation failed')
             return None
-
-
-dl = DataLoader()
-print(dl.load_json())
