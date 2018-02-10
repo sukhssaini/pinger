@@ -1,6 +1,7 @@
 import json
 import sys
 from logger import logger
+from constants import CONFIG_FILE_PATH as FILE_NAME
 
 
 class DataLoader:
@@ -8,9 +9,9 @@ class DataLoader:
         self.data = None
         self.is_data_valid = False
 
-    def read_data_from_file(self):
+    def __read_data_from_file(self):
         try:
-            with open('data.json', 'r') as file:
+            with open(FILE_NAME, 'r') as file:
                 data = json.loads(file.read())
                 self.data = data
         except IOError as e:
@@ -18,7 +19,7 @@ class DataLoader:
         except:
             logger.error("Unexpected error:", sys.exc_info()[0])
 
-    def validate_json_data(self):
+    def __validate_json_data(self):
         data = self.data
         if data is not None:
             # get links from json data
@@ -37,9 +38,9 @@ class DataLoader:
 
     def load_json(self):
         logger.info('loading json data from file.')
-        self.read_data_from_file()
+        self.__read_data_from_file()
         logger.info('validating json data')
-        is_valid = self.validate_json_data()
+        is_valid = self.__validate_json_data()
         if is_valid:
             logger.info('data returned from load_json')
             return {
