@@ -21,5 +21,10 @@ class Pinger:
 
     def run(self):
         logger.info("service started.")
-        self.__load_data()
-        self.__check_resource_status()
+        try:
+            self.__load_data()
+            self.__check_resource_status()
+        except Exception as e:
+            logger.error('error while running service')
+            logger.error(e)
+
