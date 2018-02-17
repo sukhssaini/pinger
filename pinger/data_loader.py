@@ -10,6 +10,10 @@ class DataLoader:
         self.is_data_valid = False
 
     def __read_data_from_file(self):
+        """
+        read data from json file and set it to self.data
+        :return: None
+        """
         try:
             with open(FILE_NAME, 'r') as file:
                 data = json.loads(file.read())
@@ -20,6 +24,10 @@ class DataLoader:
             logger.error("Unexpected error:", sys.exc_info()[0])
 
     def __validate_json_data(self):
+        """
+        validates the data read from json file
+        :return: None
+        """
         data = self.data
         if data is not None:
             # get links from json data
@@ -37,6 +45,10 @@ class DataLoader:
             print("No data available in file")
 
     def load_json(self):
+        """
+        load the json file then validate the data and return response
+        :return: links and webhook url in object if data is read successfully else None
+        """
         logger.info('loading json data from file.')
         self.__read_data_from_file()
         logger.info('validating json data')
